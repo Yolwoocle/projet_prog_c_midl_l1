@@ -1,0 +1,18 @@
+CC=gcc
+CFLAGS=-std=c11 -Wpedantic -Wall -Wextra -g
+LDLIBS=-lm
+RM=rm -f
+OBJ=testidentite.o identite.o
+EXE=testidentite
+# Pour produire le fichier exécutable
+$(EXE):$(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(EXE) $(LDLIBS)
+# Pour produire les fichiers objets
+testidentite.o:testidentite.c identite.h
+	$(CC) $(CFLAGS) -c testidentite.c
+identite.o:identite.c identite.h
+	$(CC) $(CFLAGS) -c identite.c
+
+# Pour effacer les objets et les exécutables
+clean:
+	$(RM) $(OBJ) $(EXE) 
