@@ -54,6 +54,8 @@ tIdentite IdentiteCreer(int Id, char *Nom, char *Prenom, char Sexe, char DateNai
     représentée par `Identite`.
 */
 void IdentiteLiberer(tIdentite Identite) {
+    if (Identite == NULL)
+        return;
     free(Identite->Nom);
     free(Identite->Prenom);
     free(Identite);
@@ -109,8 +111,11 @@ char *IdentiteDateNaissance(tIdentite Identite) {
 */
 void IdentiteAfficher(tIdentite Identite) {
     printf("[%d] %s %s, %c, %s\n", 
-        IdentiteIdentifiant(Identite), IdentiteNom(Identite), 
-        IdentitePrenom(Identite), IdentiteSexe(Identite), IdentiteDateNaissance(Identite)
+        IdentiteIdentifiant(Identite), 
+        IdentiteNom(Identite), 
+        IdentitePrenom(Identite), 
+        IdentiteSexe(Identite), 
+        IdentiteDateNaissance(Identite)
     );
 }
 

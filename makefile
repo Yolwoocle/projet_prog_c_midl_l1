@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c11 -Wpedantic -Wall -Wextra
+CFLAGS=-std=c11 -Wpedantic -Wall -Wextra -fsanitize=address -g
 LDLIBS=-lm
 RM=rm -f
 OBJ=main.o identite.o genea.o

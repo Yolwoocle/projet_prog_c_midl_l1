@@ -4,18 +4,16 @@
 #include "genea.h"
 
 // Arbre généalogique
-struct sArbre
-{
-    struct sFiche * pPremiere ; // Adresse de la première fiche
-    struct sFiche * pDerniere ; // Adresse de la dernière fiche
+struct sArbre {
+    struct sFiche * pPremiere; // Adresse de la première fiche
+    struct sFiche * pDerniere; // Adresse de la dernière fiche
 };
 // Fiche associée à chaque individu présent dans l’arbre
-struct sFiche
-{
-    tIdentite Identite ; // Accès aux informations de l’identité de la personne
-    struct sFiche * pPere ; // Adresse de la fiche du père
-    struct sFiche * pMere ; // Adresse de la fiche de la mère
-    struct sFiche * pSuivante ; // Adresse de la fiche suivante
+struct sFiche {
+    tIdentite Identite; // Accès aux informations de l’identité de la personne
+    struct sFiche * pPere; // Adresse de la fiche du père
+    struct sFiche * pMere; // Adresse de la fiche de la mère
+    struct sFiche * pSuivante; // Adresse de la fiche suivante
 };
 
 /*
@@ -24,49 +22,138 @@ struct sFiche
 */
 tArbre ArbreCreer(void) {
     tArbre arbre = malloc(sizeof(struct sArbre));
+    if (arbre == NULL) {
+        perror("Impossible d'allouer la mémoire pour l'arbre");
+        return NULL;
+    }
     arbre->pPremiere = NULL;
     arbre->pDerniere = NULL;
     return arbre;
 }
 
 /*
-    Affiche à l’écran les informations contenues dans l’arbre
-    représenté par Arbre. Cette fonction doit afficher, pour chaque personne présente dans l’arbre,
-    les informations sous la forme des trois lignes suivantes :
-    identité de la personne
-    7−→Père : identité du père de la personne
-    7−→Mère : identité de la mère de la personne
-    où 7−→ représente le caractère tabulation (’\t’) et les identités sont affichées selon le format de
-    la fonction IdentiteAfficher du module identite. Si un parent n’est pas présent dans l’arbre,
-    c’est le mot inconnu qui doit être affiché à la place de son identité.
-    Voici le résultat de l’affichage de l’arbre généalogique constitué des quatre personnes citées
-    précédemment :
-    ```
-        [122] DUBOURG Pierre , M , 15/12/1910
-        P è re : [18] DUBOURG Jean , M , 21/07/1866
-        M è re : [19] COURBIN Marthe , F , 22/04/1872
-        [9] DUBOURG Catherine , F , 21/08/1904
-        P è re : [18] DUBOURG Jean , M , 21/07/1866
-        M è re : [19] COURBIN Marthe , F , 22/04/1872
-        [19] COURBIN Marthe , F , 22/04/1872
-        P è re : inconnu
-        M è re : inconnue
-        [18] DUBOURG Jean , M , 21/07/1866
-        P è re : inconnu
-        M è re : inconnue
-    ```
+    Affiche à l’écran les informations contenues dans l’arbre représenté par `Arbre`.
 */
 void ArbreAfficher(tArbre Arbre) {
+    if (Arbre == NULL || Arbre->pPremiere == NULL) {
+        printf("[Arbre vide]\n");
+        return;
+    }
     struct sFiche * fiche = Arbre->pPremiere;
-    //todo fiche == null
-    while (fiche->pSuivante != NULL) {
+
+    while (fiche != NULL) {
         IdentiteAfficher(fiche->Identite);
         printf("\tPère : ");
-        IdentiteAfficher(fiche->pPere->Identite);
-        printf("\n");
+        if (fiche->pPere == NULL)
+            printf("inconnu\n");
+        else
+            IdentiteAfficher(fiche->pPere->Identite);
+
         printf("\tMère : ");
-        IdentiteAfficher(fiche->pMere->Identite);
+        if (fiche->pMere == NULL)
+            printf("inconnue\n");
+        else
+            IdentiteAfficher(fiche->pMere->Identite);
+
 
         fiche = fiche->pSuivante;
     } 
+}
+
+/*
+    Crée une fiche, ou `NULL` en cas de problème avec l'allocation mémoire.
+*/
+struct sFiche * FicheCreer(tIdentite identite, struct sFiche * pPere, struct sFiche * pMere, struct sFiche * pSuivante) {
+    struct sFiche * fiche = malloc(sizeof(struct sFiche));
+    if (fiche == NULL)
+        return NULL;
+
+    fiche->Identite = identite;
+    fiche->pPere = pPere;
+    fiche->pMere = pMere;
+    fiche->pSuivante = pSuivante;
+
+    return fiche;
+}
+
+/*
+    Libère l'espace mémoire occupé par `fiche`.
+*/
+void FicheLiberer(struct sFiche * fiche) {
+    IdentiteLiberer(fiche->Identite);
+    free(fiche);
+}
+
+/*
+    Renvoie la dernière fiche non nulle d'`Arbre`, ou `NULL` s'il n'y en a pas dans l'arbre.
+*/
+struct sFiche * ObtenirDerniereFiche(tArbre Arbre) {  
+    if (Arbre->pPremiere == NULL)
+        return NULL;
+
+    struct sFiche * ficheActuelle = Arbre->pPremiere;
+    while (ficheActuelle->pSuivante != NULL) {
+        ficheActuelle = ficheActuelle->pSuivante;
+    }
+
+    return ficheActuelle;
+}
+
+/*
+    Ajoute une personne d’identité `Identite` dans l’arbre `Arbre`. Cet ajout doit se faire 
+    à la fin de la liste des personnes. En cas de problème d’allocation mémoire, l’exécution 
+    ne doit pas être interrompue mais un message d’erreur doit être affiché sur la sortie 
+    standard des erreurs.
+*/
+void ArbreAjouterPersonne(tArbre Arbre, tIdentite Identite) {
+    if (Arbre == NULL || Identite == NULL) {
+        perror("ArbreAjouterPersonne : Arbre NULL");
+        return;
+    }
+    
+    struct sFiche * fiche = FicheCreer(Identite, NULL, NULL, NULL);
+    struct sFiche * derniereFiche = ObtenirDerniereFiche(Arbre);
+    if (derniereFiche == NULL) {
+        Arbre->pPremiere = fiche;
+        Arbre->pDerniere = fiche;
+    } else {
+        derniereFiche->pSuivante = fiche;
+        Arbre->pDerniere = fiche;
+    }
+}
+
+/*
+    Libère tout l’espace mémoire (y compris les identités) occupé
+    par l’arbre représenté par Arbre.
+*/
+void ArbreLiberer(tArbre Arbre) {
+    struct sFiche * ficheActuelle = Arbre->pPremiere;
+           
+    while (ficheActuelle != NULL) {
+        struct sFiche * ficheSuivante = ficheActuelle->pSuivante;
+        FicheLiberer(ficheActuelle);
+
+        ficheActuelle = ficheSuivante;
+    }
+
+    free(Arbre);
+}
+
+/*
+    Crée un arbre généalogique à partir d’une liste d’identités de personnes 
+    stockées dans le fichier de texte de désignation ``Fichier``. 
+    Cette fonction doit retourner l’arbre créé ou `NULL` en cas de problème. 
+    Les personnes doivent être ajoutées en fin de liste au fur et à mesure 
+    de la lecture dans le fichier. Le fichier ne contenantpas d’information 
+    sur les liens de parenté, ils doivent être initialisés à `NULL`.
+*/
+tArbre ArbreLirePersonnesFichier(char Fichier[]) {
+    FILE *file = fopen(Fichier, "rt");
+
+    tIdentite identite = NULL;
+    while (identite) {
+        identite = IdentiteLiref(file);
+    }
+
+    fclose(file);
 }
