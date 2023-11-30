@@ -5,8 +5,7 @@ void print_titre(char string[]) {
     printf("=====| %s |=====\n", string);
 }
 
-int main(void) {
-
+void test_arbre1() {
     print_titre("Identités en jeu");
     tIdentite identiteCena = IdentiteCreer(69, "CENA", "John", 'M', "11/11/1111");
     IdentiteAfficher(identiteCena);
@@ -24,5 +23,16 @@ int main(void) {
     ArbreAfficher(arbre);
     
     ArbreLiberer(arbre);
+}
+
+int main(void) {    
+    print_titre("Test de lecture d'un arbre généalogique");
+
+    tArbre arbre = ArbreLirePersonnesFichier("arbre4.ind");
+    
+    ArbreAfficher(arbre);
+
+    ArbreLiberer(arbre);
+
     return 0;
 }

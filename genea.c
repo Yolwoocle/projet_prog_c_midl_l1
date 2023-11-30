@@ -148,12 +148,32 @@ void ArbreLiberer(tArbre Arbre) {
     sur les liens de parenté, ils doivent être initialisés à `NULL`.
 */
 tArbre ArbreLirePersonnesFichier(char Fichier[]) {
+    printf("1 Lecture\n");
     FILE *file = fopen(Fichier, "rt");
-
-    tIdentite identite = NULL;
-    while (identite) {
-        identite = IdentiteLiref(file);
+    if (file == NULL) {
+        perror("Fichier inconnu");
+        return NULL;
     }
 
+    printf("2 Lecture\n");
+    tArbre arbre = ArbreCreer();
+    if (arbre == NULL)
+        return NULL;
+
+    printf("3 Lecture\n");
+    int i = 0;
+    printf("4 Lecture\n");
+    while (i == 0) {
+        tIdentite identite = IdentiteLiref(file);
+        if (identite == NULL)
+            i++;
+        else
+            ArbreAjouterPersonne(arbre, identite);
+    }
+    printf("5 Lecture\n");
+
     fclose(file);
+
+    printf("6 Lecture\n");
+    return arbre;
 }
