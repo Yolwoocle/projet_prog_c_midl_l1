@@ -1,0 +1,11 @@
+make1:
+	make -f makefile1
+
+clean1:
+	make -f makefile1 clean
+
+make2:
+	make -f makefile2
+
+clean2:
+	make -f makefile2 clean
