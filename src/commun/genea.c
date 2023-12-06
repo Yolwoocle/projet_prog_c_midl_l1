@@ -23,6 +23,7 @@ struct sFiche {
 tArbre ArbreCreer(void) {
     tArbre arbre = malloc(sizeof(struct sArbre));
     if (arbre == NULL) {
+        free(arbre);
         fprintf(stderr, "genea.c:ArbreCreer - Impossible d'allouer la mémoire pour l'arbre\n");
         return NULL;
     }
@@ -124,7 +125,7 @@ void ArbreAjouterPersonne(tArbre Arbre, tIdentite Identite) {
 
 /*
     Libère tout l’espace mémoire (y compris les identités) occupé
-    par l’arbre représenté par Arbre.
+    par l’arbre représenté par `Arbre`.
 */
 void ArbreLiberer(tArbre Arbre) {
     struct sFiche * ficheActuelle = Arbre->pPremiere;
@@ -254,7 +255,7 @@ int ArbreLireLienParentef(FILE *f, int *pIdEnfant, int *pIdParent, char *pParent
     }
 
     return 1;
-};
+}
 
 /*
     Ajoute à l’arbre `Arbre` les liens de parenté décrits dans le fichier de texte de désignation `Fichier`.
@@ -283,3 +284,192 @@ tArbre ArbreLireLienParenteFichier(tArbre Arbre, char Fichier[]) {
     return Arbre;
 }
 
+/*
+    Écrit une identité dans le fichier `f`, exemple :
+    ```
+    8 [label = "CHARLOT\nJacques\n08/04/1900"];
+    ```
+*/
+void EcrireIdentite(FILE *f, tIdentite identite) {
+    fprintf(f, "    %d [label = \"%s\\n%s\\n%s\"];\n",
+            IdentiteIdentifiant(identite),
+            IdentiteNom(identite),
+            IdentitePrenom(identite),
+            IdentiteDateNaissance(identite)
+    );
+}
+
+/*
+    Écrit dans le fichier `f` les personnes contenues dans l'arbre `arbre` de sexe `sexe`, sous le format DOT.
+    Exemple de sortie :
+    ```
+        122 [label = "DUBOURG\nPierre\n15/12/1910"];
+        18 [label = "DUBOURG\nJean\n21/07/1866"];
+    ```
+*/
+void EcrirePersonnesFiltrerSexe(FILE *f, tArbre arbre, char sexe) {
+    struct sFiche * fiche = arbre->pPremiere;
+    while (fiche != NULL) {
+        tIdentite identite = fiche->Identite;
+        if (IdentiteSexe(identite) == sexe) {
+            EcrireIdentite(f, identite);
+        }
+        fiche = fiche->pSuivante;
+    }
+}
+
+
+/*
+    Écrit dans le fichier `f` des arcs décrivant les liens de pârenté de la personne dans `fiché` sous le format DOT.
+    Suppose que les nœuds correspondant aux personnes ont déjà été écrits dans le fichier `f`.
+    Exemple de sortie si la personne d'ID 122 a comme parents 18 et 19 :
+    ```
+        122 -> 18;
+        122 -> 19;
+    ```
+*/
+void EcrireArcParente(FILE *f, struct sFiche * fiche) {
+    if (fiche->pPere != NULL) {
+        fprintf(f, "    %d -> %d;\n",
+                IdentiteIdentifiant(fiche->Identite),
+                IdentiteIdentifiant(fiche->pPere->Identite)
+        );
+    }
+    if (fiche->pMere != NULL) {
+        fprintf(f, "    %d -> %d;\n",
+                IdentiteIdentifiant(fiche->Identite),
+                IdentiteIdentifiant(fiche->pMere->Identite)
+        );
+    }
+}
+
+
+/*
+    Écrit dans le fichier de texte de désignation `Fichier` l’arbre `Arbre` au format DOT 6 afin de pouvoir le
+    visualiser grâce à l’outil de visualisation de graphe Graphviz 7.
+*/
+void ArbreEcrireGV(tArbre Arbre, char Fichier[]) {
+    FILE *f = fopen(Fichier, "wt");
+    if (f == NULL) {
+        fprintf(stderr, "genea.c:ArbreEcrireGV - Erreur lors de l'ouverture de \"%s\"\n", Fichier);
+        return;
+    }
+
+    fprintf(f, "digraph {\n");
+    fprintf(f, "    rankdir = \"BT\";\n");
+    fprintf(f, "    \n");
+    fprintf(f, "    node [shape = box, fontname = \"Arial\", fontsize = 10];\n");
+    EcrirePersonnesFiltrerSexe(f, Arbre, 'M');
+
+    fprintf(f, "    \n");
+    fprintf(f, "    node [color = green];\n");
+    EcrirePersonnesFiltrerSexe(f, Arbre, 'F');
+
+    fprintf(f, "    \n");
+    fprintf(f, "    edge [dir = none];\n");
+    struct sFiche * fiche = Arbre->pPremiere;
+    while (fiche != NULL) {
+        EcrireArcParente(f, fiche);
+        fiche = fiche->pSuivante;
+    }
+    fprintf(f, "}");
+
+    fclose(f);
+}
+
+void ArbreAfficherAscendantsRec(struct sFiche * fiche, int indentation) {
+    if (fiche == NULL) {
+        return;
+    }
+
+    IdentiteAfficher(fiche->Identite);
+
+    if (fiche->pPere != NULL) {
+        for (int i = 0; i < indentation+1; i++) {
+            printf("\t");
+        }
+        printf("Père : ");
+        ArbreAfficherAscendantsRec(fiche->pPere, indentation + 1);
+    }
+    if (fiche->pMere != NULL) {
+        for (int i = 0; i < indentation+1; i++) {
+            printf("\t");
+        }
+        printf("Mère : ");
+        ArbreAfficherAscendantsRec(fiche->pMere, indentation + 1);
+    }
+}
+
+/*
+    Affiche à l’écran l’arbre généalogique ascendant (constitué de tous les ascendants) de la personne
+    d’identifiant `Identifiant` contenu dans l’arbre `Arbre`. Si l’identifiant de la personne n’est pas
+    présent dans l’arbre, l’exécution ne sera pas interrompue mais un message d’erreur sera affiché sur
+    la sortie standard des erreurs.
+*/
+void ArbreAfficherAscendants(tArbre Arbre, int Identifiant) {
+    struct sFiche * fiche = ObtenirFiche(Arbre, Identifiant);
+    if (fiche == NULL) {
+        fprintf(stderr, "genea.c:ArbreAfficherAscendants - L'arbre ne contient pas de personne avec l'identifiant %d.", Identifiant);
+        return;
+    }
+    ArbreAfficherAscendantsRec(fiche, 0);
+}
+
+
+void ArbreEcrireAscendantsGVRec(FILE *f, struct sFiche * fiche) {
+    if (fiche == NULL) {
+        return;
+    }
+
+    fprintf(f, "    \n");
+    fprintf(f, "    node [color = %s];\n", IdentiteSexe(fiche->Identite) == 'M' ? "blue" : "green");
+    EcrireIdentite(f, fiche->Identite);
+
+    if (fiche->pPere != NULL) {
+        fprintf(f, "    %d -> %d;\n",
+                IdentiteIdentifiant(fiche->Identite),
+                IdentiteIdentifiant(fiche->pPere->Identite)
+        );
+    }
+    if (fiche->pMere != NULL) {
+        fprintf(f, "    %d -> %d;\n",
+                IdentiteIdentifiant(fiche->Identite),
+                IdentiteIdentifiant(fiche->pMere->Identite)
+        );
+    }
+
+    if (fiche->pPere != NULL) {
+        ArbreEcrireAscendantsGVRec(f, fiche->pPere);
+    }
+    if (fiche->pMere != NULL) {
+        ArbreEcrireAscendantsGVRec(f, fiche->pMere);
+    }
+}
+
+/*
+    Écrit au format DOT dans le fichier de texte de désignation Fichier l’arbre généalogique ascendant de la
+    personne d’identifiant Identifiant contenu dans l’arbre Arbre. Il est conseillé de faire appel à
+    une fonction récursive pour réaliser cette écriture. Le contenu du fichier arbre10.dot au format
+    DOT de l’arbre généalogique ascendant de Jean-Louis CHARLOT, extrait de l’arbre stocké dans
+    les fichiers arbre10.ind et arbre10.par, peut être :
+*/
+void ArbreEcrireAscendantsGV(tArbre Arbre, int Identifiant, char Fichier[]) {
+    FILE *f = fopen(Fichier, "wt");
+    if (f == NULL) {
+        fprintf(stderr, "genea.c:ArbreEcrireGV - Erreur lors de l'ouverture de \"%s\"\n", Fichier);
+        return;
+    }
+
+    fprintf(f, "digraph {\n");
+    fprintf(f, "    rankdir = \"BT\";\n");
+    fprintf(f, "    \n");
+    fprintf(f, "    node [shape = box, fontname = \"Arial\", fontsize = 10];\n");
+    fprintf(f, "    edge [dir = none];\n");
+
+    ArbreEcrireAscendantsGVRec(f, ObtenirFiche(Arbre, Identifiant));
+
+    fprintf(f, "    \n");
+    fprintf(f, "}");
+
+    fclose(f);
+}

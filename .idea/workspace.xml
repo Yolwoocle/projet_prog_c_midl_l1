@@ -13,6 +13,7 @@
     <generated>
       <config projectName="PROJET_PROGC_MIDL" targetName="niveau2" />
       <config projectName="PROJET_PROGC_MIDL" targetName="niveau1" />
+      <config projectName="PROJET_PROGC_MIDL" targetName="niveau3" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -21,34 +22,34 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81d4c21b-6c53-492f-b925-2a55e09855ac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/projet.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/titre.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commun/titre.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arbre10.ind" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arbre10.par" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arbre4.ind" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/arbre4.par" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/genea.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/genea.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/genea.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identite.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identite.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identite.o" beforeDir="false" />
+    <list default="true" id="81d4c21b-6c53-492f-b925-2a55e09855ac" name="Changes" comment="Genea">
+      <change afterPath="$PROJECT_DIR$/data/arbre4.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-e14bec671e330668ed0f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-41a74a418c9582ef6b27.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-12-03T13-35-03-0369.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-niveau1-Debug-58e9f7f2bd1644bfa265.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-niveau2-Debug-7720731bd56d4fdee782.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/niveau2.dir/src/commun/genea.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/niveau2.dir/src/commun/genea.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/niveau2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/niveau2.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/genea.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/genea.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/identite.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/identite.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/titre.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/titre.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makefile1" beforeDir="false" afterPath="$PROJECT_DIR$/makefile1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/personne.ind" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testidentite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testidentite.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testidentite.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commun/genea.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/commun/genea.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commun/genea.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/commun/genea.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commun/identite.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/commun/identite.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/niveau2/testgenea.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/niveau2/testgenea.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/niveau2/testgenea.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/niveau2/testgenea.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/niveau3/visuarbre.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/niveau3/visuarbre.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +72,9 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2Z0adPDfLQNLtjjQBFZtSuZl28G" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -85,6 +89,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/docs/cours/l1/prog_c/projet/src/niveau3&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -93,13 +98,29 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\docs\cours\l1\prog_c\projet\src\niveau3" />
+      <recent name="D:\docs\cours\l1\prog_c\projet\src\niveau2" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.niveau2">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="niveau1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROJET_PROGC_MIDL" TARGET_NAME="niveau1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROJET_PROGC_MIDL" RUN_TARGET_NAME="niveau1">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="niveau2" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="data/arbre4.ind data/arbre4.par" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROJET_PROGC_MIDL" TARGET_NAME="niveau2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROJET_PROGC_MIDL" RUN_TARGET_NAME="niveau2">
+    <configuration name="niveau2" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="data/arbre10.ind data/arbre10.par" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROJET_PROGC_MIDL" TARGET_NAME="niveau2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROJET_PROGC_MIDL" RUN_TARGET_NAME="niveau2">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="niveau3" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROJET_PROGC_MIDL" TARGET_NAME="niveau3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROJET_PROGC_MIDL" RUN_TARGET_NAME="niveau3">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -107,6 +128,7 @@
     <list>
       <item itemvalue="CMake Application.niveau1" />
       <item itemvalue="CMake Application.niveau2" />
+      <item itemvalue="CMake Application.niveau3" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -121,8 +143,18 @@
       <workItem from="1701597881491" duration="6086000" />
       <workItem from="1701609632304" duration="12727000" />
       <workItem from="1701631569385" duration="1240000" />
-      <workItem from="1701768177258" duration="6000" />
+      <workItem from="1701768177258" duration="2693000" />
+      <workItem from="1701853369390" duration="9405000" />
     </task>
+    <task id="LOCAL-00001" summary="Genea">
+      <option name="closed" value="true" />
+      <created>1701768663512</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701768663512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,5 +165,9 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Genea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Genea" />
   </component>
 </project>

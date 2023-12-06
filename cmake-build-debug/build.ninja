@@ -150,6 +150,68 @@ build niveau2.exe: C_EXECUTABLE_LINKER__niveau2_Debug CMakeFiles/niveau2.dir/src
   TARGET_IMPLIB = libniveau2.dll.a
   TARGET_PDB = niveau2.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target niveau3
+
+
+#############################################
+# Order-only phony target for niveau3
+
+build cmake_object_order_depends_target_niveau3: phony || CMakeFiles/niveau3.dir
+
+build CMakeFiles/niveau3.dir/src/niveau3/visuarbre.c.obj: C_COMPILER__niveau3_unscanned_Debug D$:/docs/cours/l1/prog_c/projet/src/niveau3/visuarbre.c || cmake_object_order_depends_target_niveau3
+  DEP_FILE = CMakeFiles\niveau3.dir\src\niveau3\visuarbre.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -ID:/docs/cours/l1/prog_c/projet/include
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  OBJECT_FILE_DIR = CMakeFiles\niveau3.dir\src\niveau3
+
+build CMakeFiles/niveau3.dir/src/niveau3/visuarbreasc.c.obj: C_COMPILER__niveau3_unscanned_Debug D$:/docs/cours/l1/prog_c/projet/src/niveau3/visuarbreasc.c || cmake_object_order_depends_target_niveau3
+  DEP_FILE = CMakeFiles\niveau3.dir\src\niveau3\visuarbreasc.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -ID:/docs/cours/l1/prog_c/projet/include
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  OBJECT_FILE_DIR = CMakeFiles\niveau3.dir\src\niveau3
+
+build CMakeFiles/niveau3.dir/src/commun/genea.c.obj: C_COMPILER__niveau3_unscanned_Debug D$:/docs/cours/l1/prog_c/projet/src/commun/genea.c || cmake_object_order_depends_target_niveau3
+  DEP_FILE = CMakeFiles\niveau3.dir\src\commun\genea.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -ID:/docs/cours/l1/prog_c/projet/include
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  OBJECT_FILE_DIR = CMakeFiles\niveau3.dir\src\commun
+
+build CMakeFiles/niveau3.dir/src/commun/identite.c.obj: C_COMPILER__niveau3_unscanned_Debug D$:/docs/cours/l1/prog_c/projet/src/commun/identite.c || cmake_object_order_depends_target_niveau3
+  DEP_FILE = CMakeFiles\niveau3.dir\src\commun\identite.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -ID:/docs/cours/l1/prog_c/projet/include
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  OBJECT_FILE_DIR = CMakeFiles\niveau3.dir\src\commun
+
+build CMakeFiles/niveau3.dir/src/commun/titre.c.obj: C_COMPILER__niveau3_unscanned_Debug D$:/docs/cours/l1/prog_c/projet/src/commun/titre.c || cmake_object_order_depends_target_niveau3
+  DEP_FILE = CMakeFiles\niveau3.dir\src\commun\titre.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -ID:/docs/cours/l1/prog_c/projet/include
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  OBJECT_FILE_DIR = CMakeFiles\niveau3.dir\src\commun
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target niveau3
+
+
+#############################################
+# Link the executable niveau3.exe
+
+build niveau3.exe: C_EXECUTABLE_LINKER__niveau3_Debug CMakeFiles/niveau3.dir/src/niveau3/visuarbre.c.obj CMakeFiles/niveau3.dir/src/niveau3/visuarbreasc.c.obj CMakeFiles/niveau3.dir/src/commun/genea.c.obj CMakeFiles/niveau3.dir/src/commun/identite.c.obj CMakeFiles/niveau3.dir/src/commun/titre.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\niveau3.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = niveau3.exe
+  TARGET_IMPLIB = libniveau3.dll.a
+  TARGET_PDB = niveau3.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -180,6 +242,8 @@ build niveau1: phony niveau1.exe
 
 build niveau2: phony niveau2.exe
 
+build niveau3: phony niveau3.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -188,7 +252,7 @@ build niveau2: phony niveau2.exe
 #############################################
 # Folder: D:/docs/cours/l1/prog_c/projet/cmake-build-debug
 
-build all: phony niveau1.exe niveau2.exe
+build all: phony niveau1.exe niveau2.exe niveau3.exe
 
 # =============================================================================
 # Built-in targets

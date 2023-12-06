@@ -22,5 +22,4 @@ extern char *IdentiteDateNaissance(tIdentite Identite);
 
 extern void IdentiteAfficher(tIdentite Identite);
 extern tIdentite IdentiteLiref(FILE *f);
-
 #endif

@@ -19,7 +19,7 @@ void test_arbre1() {
     ArbreAjouterPersonne(arbre, identitePapa);
     ArbreAjouterPersonne(arbre, identiteMama);
     ArbreAfficher(arbre);
-    
+
     ArbreLiberer(arbre);
 }
 
@@ -39,7 +39,22 @@ int main(int argc, char *argv[]) {
     ArbreLireLienParenteFichier(arbre, nomFichLiensParente);
     ArbreAfficher(arbre);
 
+    ArbreEcrireGV(arbre, "data/arbre4.dot");
+
+    printSep();
+    ArbreAfficherAscendants(arbre, 4);
+    ArbreEcrireAscendantsGV(arbre, 4, "data/ascendant_id4.dot");
+
     ArbreLiberer(arbre);
     printTitre("OK");
     return 0;
 }
+
+
+
+
+
+
+
+
+

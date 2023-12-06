@@ -3,5 +3,4 @@
 
 extern void printTitre(char titre[]);
 extern void printSep();
-
 #endif
