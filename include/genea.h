@@ -3,7 +3,6 @@
 
 // Type permettant de manipuler un arbre généalogique
 typedef struct sArbre * tArbre ;
-struct sFiche;
 
 extern tArbre ArbreCreer(void);
 extern void ArbreAfficher(tArbre Arbre);
@@ -17,10 +16,4 @@ extern void ArbreEcrireGV(tArbre Arbre, char Fichier[]);
 extern void ArbreAfficherAscendants(tArbre Arbre, int Identifiant);
 extern void ArbreEcrireAscendantsGV(tArbre Arbre, int Identifiant, char Fichier[]);
 
-static void EcrireIdentite(FILE *f, tIdentite identite);
-static struct sFiche * ObtenirFiche(tArbre Arbre, int id);
-static void EcrirePersonnesFiltrerSexe(FILE *f, tArbre arbre, char sexe);
-static void EcrireArcParente(FILE *f, struct sFiche * fiche);
-static void ArbreAfficherAscendantsRec(struct sFiche * fiche, int indentation);
-static void ArbreEcrireAscendantsGVRec(FILE *f, struct sFiche * fiche);
 #endif

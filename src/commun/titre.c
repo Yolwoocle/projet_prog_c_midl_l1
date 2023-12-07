@@ -17,27 +17,41 @@ void printSep() {
 }
 
 /*
- * Affiche un titre sous la forme `"=====| (string) |===="`.
+ * Affiche un texte sous la forme `"xxxxx| (string) |xxxxx"`, avec `'x'` remplacé par `charLigne`.
  */
-void printTitre(char titre[]) {
-    int longTitre = strlen(titre);
+static void printTitreGenerique(char texte[], char charLigne) {
+    int longTitre = strlen(texte);
     int longLigne = (LONG_MAX_TITRE - longTitre) / 2;
 
     // Affichage de la ligne de gauche
     int i = 0;
     while (i < longLigne-2) {
-        printf("=");
+        printf("%c", charLigne);
         i++;
     }
 
-    // Affichage du titre
-    printf("| %s |", titre);
+    // Affichage du texte
+    printf("| %s |", texte);
     i += longTitre + 4;
 
     // Affichage de la ligne de droite
     while (i < LONG_MAX_TITRE) {
-        printf("=");
+        printf("%c", charLigne);
         i++;
     }
     printf("\n");
+}
+
+/*
+ * Affiche un texte sous la forme `"=====| (texte) |====="`.
+ */
+void printTitre(char texte[]) {
+    printTitreGenerique(texte, '=');
+}
+
+/*
+ * Affiche un texte sous la forme `"-----| (string) |-----"`.
+ */
+void printSousTitre(char texte[]) {
+    printTitreGenerique(texte, '-');
 }

@@ -1,23 +1,26 @@
-#include <string.h>
 #include "identite.h"
 #include "genea.h"
 #include "titre.h"
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        printf("Nombre invalide d'arguments.\n");
+    if (argc != 4) {
+        printf("Nombre invalide d'arguments. Format: \"./visuarbre fichier-personnes fichier-liens-parente fichier-dot\"\n");
         return 0;
     }
-    printTitre("Test de lecture d'un arbre généalogique");
+    printTitre("Test de visualisation d'arbre avec le format DOT");
 
     char * nomFichPersonnes = argv[1];
     char * nomFichLiensParente = argv[2];
-    tArbre arbre = ArbreLirePersonnesFichier(nomFichPersonnes);
+    char * nomFichDot = argv[3];
 
-    ArbreAfficher(arbre);
-    printSep();
+    tArbre arbre = ArbreLirePersonnesFichier(nomFichPersonnes);
     ArbreLireLienParenteFichier(arbre, nomFichLiensParente);
-    ArbreAfficher(arbre);
+
+    ArbreEcrireGV(arbre, nomFichDot);
+
+    printSep();
+    ArbreAfficherAscendants(arbre, 4);
+    ArbreEcrireAscendantsGV(arbre, 4, "data/ascendant_id4.dot");
 
     ArbreLiberer(arbre);
     printTitre("OK");

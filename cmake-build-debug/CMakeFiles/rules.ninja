@@ -69,6 +69,25 @@ rule C_EXECUTABLE_LINKER__niveau3_Debug
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__niveau3_2_unscanned_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C executable.
+
+rule C_EXECUTABLE_LINKER__niveau3_2_Debug
+  command = cmd.exe /C "$PRE_LINK && C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\gcc.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking C executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for running custom commands.
 
 rule CUSTOM_COMMAND
@@ -89,7 +108,7 @@ rule RERUN_CMAKE
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = "D:\Program Files\JETBRA~1\CLION2~1.2\bin\ninja\win\x64\ninja.exe" $FILE_ARG -t clean $TARGETS
+  command = "D:\Program Files\JetBrains\CLion 2023.2.2\bin\ninja\win\x64\ninja.exe" $FILE_ARG -t clean $TARGETS
   description = Cleaning all built files...
 
 
@@ -97,6 +116,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = "D:\Program Files\JETBRA~1\CLION2~1.2\bin\ninja\win\x64\ninja.exe" -t targets
+  command = "D:\Program Files\JetBrains\CLion 2023.2.2\bin\ninja\win\x64\ninja.exe" -t targets
   description = All primary targets available:
 

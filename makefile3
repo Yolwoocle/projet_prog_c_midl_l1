@@ -6,11 +6,11 @@ RM=rm -f
 DIR_HOME = .
 DIR_SRC = $(DIR_HOME)/src
 DIR_SRC_COM = $(DIR_SRC)/commun
-DIR_SRC_NIV = $(DIR_SRC)/niveau2
+DIR_SRC_NIV = $(DIR_SRC)/niveau3_1
 SRC = $(wildcard $(DIR_SRC_COM)/*.c) $(wildcard $(DIR_SRC_NIV)/*.c)
 OBJ = $(SRC:.c=.o)
 
-EXE=main
+EXE=visuarbre
 
 all: $(EXE)
 
