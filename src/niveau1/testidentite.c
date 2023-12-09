@@ -19,9 +19,10 @@ int main(void) {
     }
 
     printSep();
+    
     {
         printf("Lecture de personne.ind\n");
-        FILE * f = fopen("data/personne.ind", "rt");
+        FILE * f = fopen("personne.ind", "rt");
         tIdentite identite_fich = IdentiteLiref(f);
 
         IdentiteAfficher(identite_fich);

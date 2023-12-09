@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 5) {
-        printf("Nombre invalide d'arguments. Format: \"./visuarbreasc fichier-personnes fichier-liens-parente identifiant fichier-dot\"\n");
+        printf("Nombre invalide d'arguments. Format : \"./visuarbreasc fichier-personnes fichier-liens-parente identifiant fichier-dot\"\n");
         return 0;
     }
     printTitre("Test sur les arbres généalogiques ascendants");

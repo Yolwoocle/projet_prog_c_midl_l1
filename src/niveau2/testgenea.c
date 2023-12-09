@@ -25,7 +25,7 @@ void test_arbre1() {
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        printf("Nombre invalide d'arguments.\n");
+        printf("Nombre invalide d'arguments. Format : \"./testgenea fichier-personnes fichier-liens-parente\"\n");
         return 0;
     }
     printTitre("Test de lecture d'un arbre généalogique");
@@ -35,26 +35,11 @@ int main(int argc, char *argv[]) {
     tArbre arbre = ArbreLirePersonnesFichier(nomFichPersonnes);
 
     ArbreAfficher(arbre);
-    printSep();
+    printSousTitre("Lecture des liens de parenté");
     ArbreLireLienParenteFichier(arbre, nomFichLiensParente);
     ArbreAfficher(arbre);
-
-    ArbreEcrireGV(arbre, "data/arbre4.dot");
-
-    printSep();
-    ArbreAfficherAscendants(arbre, 4);
-    ArbreEcrireAscendantsGV(arbre, 4, "data/ascendant_id4.dot");
 
     ArbreLiberer(arbre);
     printTitre("OK");
     return 0;
 }
-
-
-
-
-
-
-
-
-

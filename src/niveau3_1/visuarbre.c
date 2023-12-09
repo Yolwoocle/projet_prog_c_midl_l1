@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
-        printf("Nombre invalide d'arguments. Format: \"./visuarbre fichier-personnes fichier-liens-parente fichier-dot\"\n");
+        printf("Nombre invalide d'arguments. Format : \"./visuarbre fichier-personnes fichier-liens-parente fichier-dot\"\n");
         return 0;
     }
     printTitre("Test de visualisation d'arbre avec le format DOT");
